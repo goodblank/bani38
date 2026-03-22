@@ -571,7 +571,6 @@ p{margin-bottom:12px}
 <footer style="padding: 24px 0; background: #0a0a0a; color: rgba(255,255,255,.4); text-align: center; font-size: 0.9rem;">
 <div class="container"><span>© 2026 Инженерные Каркасные Бани Иркутск. Все права защищены.</span></div>
 </footer>
-
 <div class="modal-overlay" id="modal-catalog" onclick="closeModalOnBg(event, 'catalog')">
 <div class="modal-box">
 <button class="modal-close" onclick="closeModal('catalog')">&times;</button>
@@ -604,6 +603,7 @@ p{margin-bottom:12px}
 </div>
 
 <script>
+// --- 1. АНИМАЦИИ И СКРОЛЛ ---
 document.addEventListener("DOMContentLoaded", function() {
   var observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -615,7 +615,22 @@ document.addEventListener("DOMContentLoaded", function() {
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 });
 
+document.querySelectorAll('.js-scroll').forEach(function(anchor){
+    anchor.addEventListener('click', function(e){
+        e.preventDefault();
+        var target = document.querySelector(this.getAttribute('href'));
+        if(target) {
+            var offset = 60; 
+            var elementPosition = target.getBoundingClientRect().top;
+            var offsetPosition = elementPosition + window.pageYOffset - offset;
+            window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+        }
+    });
+});
+
+// --- 2. ЛОГИКА КВИЗА (БЕЗ ПРЫЖКОВ И ГЛЮКОВ) ---
 var quizData={step1:'', step2:[], step3:[], step4:'', step5:''};
+
 function selectOption(el, isMultiple){
     var step = el.closest('.quiz-step');
     var value = el.getAttribute('data-value');
@@ -635,6 +650,7 @@ function selectOption(el, isMultiple){
         if(step.id === 'step3') quizData.step3 = selectedArr;
     }
 }
+
 function showStep(n){
     ['step1','step2','step3','step4','step5','step-success'].forEach(function(id){
         var el = document.getElementById(id);
@@ -646,23 +662,68 @@ function showStep(n){
     
     if(n <= 5) document.getElementById('quiz-counter').innerText = 'Шаг ' + n + ' из 5';
 }
+
 function nextStep(n){ showStep(n); }
 function prevStep(n){ showStep(n); }
 
-function submitQuiz() {
+// --- 3. БЕЗОПАСНАЯ ОТПРАВКА ЧЕРЕЗ WEB3FORMS ---
+async function submitQuiz() {
     var name = document.getElementById('q-name').value;
     var phone = document.getElementById('q-phone').value;
-    if (!name || phone.length < 5) { alert('Пожалуйста, корректно заполните Имя и Телефон!'); return; }
+    
+    if (!name || phone.length < 5) { 
+        alert('Пожалуйста, корректно заполните Имя и Телефон!'); 
+        return; 
+    }
 
-    var text = "🔥 НОВАЯ ЗАЯВКА С САЙТА 🔥\n\n👤 Имя: " + name + "\n📞 Телефон: " + phone + "\n\n🔹 Формат: " + (quizData.step1 || 'Не выбран') + "\n🔹 Зоны: " + (quizData.step2.length ? quizData.step2.join(', ') : 'Не выбрано') + "\n🔹 Допы: " + (quizData.step3.length ? quizData.step3.join(', ') : 'Не выбрано') + "\n🔹 Сроки: " + (quizData.step4 || 'Не выбраны') + "\n🔹 Бонус: " + (quizData.step5 || 'Не выбран');
+    // Меняем текст кнопки, чтобы клиент видел процесс
+    var btn = document.querySelector('#step5 .btn-primary');
+    var originalText = btn.innerText;
+    btn.innerText = 'Отправка...';
+    btn.disabled = true;
 
-    var botToken = '8752208707:AAFmcd_edtXl-piuofe9qX4UQr096MDU5Ns'; 
-    var chatId = '185772715';
-    var url = 'https://api.telegram.org/bot' + botToken + '/sendMessage?chat_id=' + chatId + '&text=' + encodeURIComponent(text);
+    // Собираем красивое сообщение из твоего массива ответов
+    var text = "🔥 НОВАЯ ЗАЯВКА С КВИЗА 🔥\n\n" + 
+               "👤 Имя: " + name + "\n" + 
+               "📞 Телефон: " + phone + "\n\n" + 
+               "🔹 Формат: " + (quizData.step1 || 'Не выбран') + "\n" + 
+               "🔹 Зоны: " + (quizData.step2.length ? quizData.step2.join(', ') : 'Не выбрано') + "\n" + 
+               "🔹 Допы: " + (quizData.step3.length ? quizData.step3.join(', ') : 'Не выбрано') + "\n" + 
+               "🔹 Сроки: " + (quizData.step4 || 'Не выбраны') + "\n" + 
+               "🔹 Бонус: " + (quizData.step5 || 'Не выбран');
 
-    fetch(url).then(function(){ showStep(6); }).catch(function(e){ console.error('Ошибка:', e); showStep(6); });
+    // Настройки Web3Forms
+    const formData = {
+        access_key: 'b1e5ac10-27b8-4295-a83b-4f04f322291f',
+        from_name: "Сайт Бани38",
+        subject: `Новая заявка: ${name} (${phone})`,
+        name: name,
+        phone: phone,
+        message: text
+    };
+
+    try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+            showStep(6); // Показываем твой красивый зеленый экран успеха!
+        } else {
+            alert('Что-то пошло не так. Попробуйте позвонить нам напрямую.');
+            btn.innerText = originalText;
+            btn.disabled = false;
+        }
+    } catch (e) {
+        alert('Ошибка сети. Проверьте интернет.');
+        btn.innerText = originalText;
+        btn.disabled = false;
+    }
 }
 
+// --- 4. МОДАЛЬНЫЕ ОКНА И ГАЛЕРЕЯ (Без изменений) ---
 function playVideo(url) {
     var wrapper = document.getElementById('video-wrapper');
     wrapper.innerHTML = '<video id="promo-vid" controls autoplay style="width:100%; max-height:80vh; border-radius:8px;"><source src="'+url+'" type="video/mp4"></video>';
@@ -731,93 +792,6 @@ function toggleFaq(el){var item=el.parentElement,open=item.classList.contains('o
 function openModal(id){document.getElementById('modal-'+id).classList.add('active');document.body.style.overflow='hidden'}
 function closeModal(id){document.getElementById('modal-'+id).classList.remove('active');if(id==='catalog')document.querySelector('.modal-media').innerHTML=''; document.body.style.overflow=''}
 function closeModalOnBg(e, id){ if(e.target.id === 'modal-'+id) { if(id==='video') closeVideoModal(); else closeModal(id); } }
-
-document.querySelectorAll('.js-scroll').forEach(function(anchor){
-    anchor.addEventListener('click', function(e){
-        e.preventDefault();
-        var target = document.querySelector(this.getAttribute('href'));
-        if(target) {
-            var offset = 60; 
-            var elementPosition = target.getBoundingClientRect().top;
-            var offsetPosition = elementPosition + window.pageYOffset - offset;
-            window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-        }
-    });
-});
-</script>
-<script>
-// Твой ключ Web3Forms
-const WEB3_ACCESS_KEY = 'b1e5ac10-27b8-4295-a83b-4f04f322291f';
-
-// Логика переключения шагов
-let currentStep = 0;
-const steps = document.querySelectorAll('.quiz-step');
-
-function nextStep(stepIndex) {
-    steps.forEach(step => step.classList.remove('active'));
-    if (steps[stepIndex]) {
-        steps[stepIndex].classList.add('active');
-        currentStep = stepIndex;
-    }
-}
-
-// Выбор варианта (карточки)
-document.querySelectorAll('.quiz-option').forEach(option => {
-    option.addEventListener('click', function() {
-        const parent = this.closest('.quiz-options');
-        parent.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
-        this.classList.add('selected');
-        
-        // Автопереход через полсекунды к следующему шагу
-        setTimeout(() => {
-            const nextBtn = this.closest('.quiz-step').querySelector('.btn-next');
-            if (nextBtn) nextBtn.click();
-        }, 500);
-    });
-});
-
-// ФУНКЦИЯ ОТПРАВКИ
-async function finishQuiz() {
-    // Собираем результаты квиза
-    const selectedOptions = document.querySelectorAll('.quiz-option.selected');
-    let quizSummary = "Результаты квиза:\n";
-    
-    selectedOptions.forEach((opt, index) => {
-        const question = opt.closest('.quiz-step').querySelector('h3').innerText;
-        const answer = opt.querySelector('.quiz-option-text').innerText;
-        quizSummary += `${index + 1}. ${question}: ${answer}\n`;
-    });
-
-    // Собираем контакты
-    const name = document.querySelector('input[placeholder*="Имя"]').value;
-    const phone = document.querySelector('input[placeholder*="Телефон"]').value;
-
-    const formData = {
-        access_key: WEB3_ACCESS_KEY,
-        from_name: "Сайт Бани38",
-        subject: `Новая заявка от ${name}`,
-        name: name,
-        phone: phone,
-        message: quizSummary // Тут будут все ответы на вопросы квиза
-    };
-
-    try {
-        const response = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(formData)
-        });
-
-        if (response.ok) {
-            alert('Спасибо! Заявка отправлена!');
-            location.reload();
-        } else {
-            alert('Что-то пошло не так. Попробуйте еще раз.');
-        }
-    } catch (e) {
-        alert('Ошибка сети. Проверьте интернет.');
-    }
-}
 </script>
 </body>
 </html>
