@@ -665,8 +665,7 @@ function showStep(n){
 
 function nextStep(n){ showStep(n); }
 function prevStep(n){ showStep(n); }
-
-// --- 3. БЕЗОПАСНАЯ ОТПРАВКА ЧЕРЕЗ WEB3FORMS ---
+// --- 3. ПРЯМАЯ БЕСПЛАТНАЯ ОТПРАВКА В TELEGRAM ---
 async function submitQuiz() {
     var name = document.getElementById('q-name').value;
     var phone = document.getElementById('q-phone').value;
@@ -676,43 +675,41 @@ async function submitQuiz() {
         return; 
     }
 
-    // Меняем текст кнопки, чтобы клиент видел процесс
+    // Кнопка: показываем процесс
     var btn = document.querySelector('#step5 .btn-primary');
     var originalText = btn.innerText;
     btn.innerText = 'Отправка...';
     btn.disabled = true;
 
-    // Собираем красивое сообщение из твоего массива ответов
-    var text = "🔥 НОВАЯ ЗАЯВКА С КВИЗА 🔥\n\n" + 
-               "👤 Имя: " + name + "\n" + 
-               "📞 Телефон: " + phone + "\n\n" + 
-               "🔹 Формат: " + (quizData.step1 || 'Не выбран') + "\n" + 
-               "🔹 Зоны: " + (quizData.step2.length ? quizData.step2.join(', ') : 'Не выбрано') + "\n" + 
-               "🔹 Допы: " + (quizData.step3.length ? quizData.step3.join(', ') : 'Не выбрано') + "\n" + 
-               "🔹 Сроки: " + (quizData.step4 || 'Не выбраны') + "\n" + 
-               "🔹 Бонус: " + (quizData.step5 || 'Не выбран');
+    // Формируем текст сообщения для Телеграма
+    var message = "<b>🔥 НОВАЯ ЗАЯВКА С КВИЗА 🔥</b>\n\n";
+    message += "<b>👤 Имя:</b> " + name + "\n";
+    message += "<b>📞 Телефон:</b> " + phone + "\n\n";
+    message += "<b>🔹 Формат:</b> " + (quizData.step1 || 'Не выбран') + "\n";
+    message += "<b>🔹 Зоны:</b> " + (quizData.step2.length ? quizData.step2.join(', ') : 'Не выбрано') + "\n";
+    message += "<b>🔹 Допы:</b> " + (quizData.step3.length ? quizData.step3.join(', ') : 'Не выбрано') + "\n";
+    message += "<b>🔹 Сроки:</b> " + (quizData.step4 || 'Не выбраны') + "\n";
+    message += "<b>🔹 Бонус:</b> " + (quizData.step5 || 'Не выбран');
 
-    // Настройки Web3Forms
-    const formData = {
-        access_key: 'b1e5ac10-27b8-4295-a83b-4f04f322291f',
-        from_name: "Сайт Бани38",
-        subject: `Новая заявка: ${name} (${phone})`,
-        name: name,
-        phone: phone,
-        message: text
-    };
+    const TG_TOKEN = '8752208707:AAFmcd_edtXl-piuofe9qX4UQr096MDU5Ns';
+    const TG_CHAT_ID = '185772715';
+    const url = `https://api.telegram.org/bot${TG_TOKEN}/sendMessage`;
 
     try {
-        const response = await fetch('https://api.web3forms.com/submit', {
+        const response = await fetch(url, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(formData)
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: TG_CHAT_ID,
+                text: message,
+                parse_mode: 'HTML'
+            })
         });
 
         if (response.ok) {
-            showStep(6); // Показываем твой красивый зеленый экран успеха!
+            showStep(6); // Твой экран успеха
         } else {
-            alert('Что-то пошло не так. Попробуйте позвонить нам напрямую.');
+            alert('Ошибка при отправке в Telegram. Попробуйте еще раз.');
             btn.innerText = originalText;
             btn.disabled = false;
         }
