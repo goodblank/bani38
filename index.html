@@ -1,3 +1,577 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Инженерные бани в Иркутске | Сибирский стандарт качества</title>
+<meta name="description" content="Каркасные бани с инженерным подходом. Вентфасад, камерная сушка, кедр. Смотрите каталог и цены от производителя в Хомутово.">
+<meta name="theme-color" content="#1E1E1E">
+<style>
+/* --- БАЗОВЫЕ НАСТРОЙКИ --- */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg:#FAF8F5;--bg-alt:#F0EDE8;--bg-warm:#FFF9F0;--bg-dark:#141414;
+--graphite:#1E1E1E;--graphite-l:#2E2E2E;
+--wood:#B8863A;--wood-l:#D4A55A;--wood-d:#8E6620;--wood-glow:rgba(184,134,58,.1);
+--white:#FFFFFF;--text:#222222;--text-light:#555555;--text-muted:#888888;
+--border:#DDD5C8;--border-light:#EAE5DC;
+--danger:#C0392B;--success:#1D7A3F;
+--radius:8px;--radius-lg:16px;
+--shadow-sm:0 2px 12px rgba(0,0,0,.05);--shadow:0 6px 24px rgba(0,0,0,.08);
+--shadow-lg:0 12px 48px rgba(0,0,0,.12);
+--font:'Segoe UI',system-ui,-apple-system,sans-serif;
+--max-w:1150px;--gap:24px;--transition:all .3s cubic-bezier(.4,0,.2,1)
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font);background:linear-gradient(180deg, #FAF8F5 0%, #F0EDE8 100%);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased; overflow-x:hidden;}
+img,svg{display:block;max-width:100%}
+a{color:var(--wood);text-decoration:none;transition:var(--transition)}
+a:hover{color:var(--wood-d)}
+.container{width:100%;max-width:var(--max-w);margin:0 auto;padding:0 20px}
+h1,h2,h3,h4{font-weight:700;line-height:1.2;color:var(--graphite)}
+h1{font-size:clamp(1.9rem,4vw,3rem);letter-spacing:-.02em;margin-bottom:20px; line-height:1.2;}
+h2{font-size:clamp(1.6rem,3.5vw,2.5rem);margin-bottom:16px}
+h3{font-size:clamp(1.2rem,2.5vw,1.5rem)}
+p{margin-bottom:12px}
+
+/* --- АНИМАЦИИ ПРИ СКРОЛЛЕ --- */
+.fade-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* --- КНОПКИ И МЕТКИ --- */
+.section-label{display:inline-flex;align-items:center;font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--wood);margin-bottom:16px;padding:8px 16px;background:var(--wood-glow);border-radius:20px; border:1px solid rgba(184,134,58,0.2);}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:18px 36px;border:none;border-radius:var(--radius);cursor:pointer;font-family:var(--font);font-size:1.05rem;font-weight:600;transition:var(--transition);text-align:center;line-height:1.3;position:relative;overflow:hidden; z-index:1;}
+.btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.25),transparent);opacity:0;transition:opacity .3s; z-index:-1;}
+.btn:hover::after{opacity:1}
+.btn-primary{background:var(--wood);color:var(--white);box-shadow:0 4px 12px rgba(184,134,58,.3);}
+.btn-primary:hover{background:var(--wood-d);transform:translateY(-2px);box-shadow:0 6px 16px rgba(184,134,58,.5);}
+.btn-outline{background:transparent;color:var(--wood);border:2px solid var(--wood)}
+.btn-outline:hover{background:var(--wood);color:var(--white)}
+.btn-white{background:var(--white);color:var(--graphite);box-shadow:var(--shadow-sm); border:1px solid var(--border-light);}
+.btn-white:hover{box-shadow:var(--shadow);transform:translateY(-1px); border-color:var(--wood-l);}
+.btn-block{width:100%;margin-bottom:12px; display:flex;}
+.btn-tg{background:#0088CC;color:#fff;}
+.btn-tg:hover{background:#0077B5;color:#fff;transform:translateY(-2px);box-shadow:0 4px 15px rgba(0,136,204,.3)}
+.btn-video-red{background-color:#E33939;color:#fff;border:none;font-weight:bold;margin-bottom:15px;box-shadow:0 4px 12px rgba(227,57,57,0.3);}
+.btn-video-red:hover{background-color:#c0392b;transform:translateY(-2px);color:#fff; box-shadow:0 6px 16px rgba(227,57,57,0.4);}
+.btn-disabled{background-color:#EAE5DC;color:#999;border:1px solid #DDD5C8;cursor:not-allowed;margin-bottom:15px;}
+.btn-disabled:hover{transform:none; box-shadow:none;}
+
+/* --- ЛИПКАЯ ПАНЕЛЬ СБОКУ --- */
+.sticky-bar { position: fixed; bottom: 30px; right: 30px; z-index: 200; display: flex; flex-direction: column; gap: 12px; align-items: flex-end; }
+.sticky-btn { display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; border-radius: 50px; box-shadow: var(--shadow-lg); transition: var(--transition); font-weight: bold; }
+.sticky-btn:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.25); }
+.sticky-calc { background: var(--wood); padding: 16px 28px; font-size: 1.05rem; }
+.sticky-icons { display: flex; gap: 12px; }
+.sticky-icon { width: 54px; height: 54px; border-radius: 50%; display:flex; align-items:center; justify-content:center; }
+.bg-tg { background: #0088CC; }
+.bg-phone { background: #25D366; } 
+.sticky-icon svg { width: 26px; height: 26px; fill: #fff; }
+
+/* --- ШАПКА --- */
+.site-header{background:var(--graphite);color:var(--white);padding:0;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.3)}
+.header-top{padding:8px 0;background:rgba(0,0,0,.3);font-size:.8rem;color:var(--text-muted)}
+.header-top .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.header-main{padding:12px 0}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-size:1.3rem;font-weight:800;color:var(--white);letter-spacing:.02em;white-space:nowrap}
+.logo span{color:var(--wood-l)}
+.logo small{display:block;font-size:.65rem;font-weight:500;color:rgba(255,255,255,.5);letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.header-phone{display:flex;flex-direction:column;align-items:flex-end;color:var(--wood-l);font-weight:800;font-size:1.4rem}
+.header-phone small{font-size:0.8rem; color:var(--white); font-weight:normal;opacity:.8}
+
+/* --- 1. ПЕРВЫЙ ЭКРАН (HERO) --- */
+.hero{background:linear-gradient(145deg,rgba(15,15,15,0.92) 0%,rgba(30,30,30,0.85) 100%), url('01 каркасные бани.png') center/cover; color:var(--white); padding:90px 0 100px; position:relative;}
+.hero-content{max-width:880px; position:relative; z-index:2;}
+.hero h1{color:var(--white);}
+.hero-bullets { list-style: none; padding: 0; margin: 24px 0 30px; display:flex; gap:12px; flex-wrap:wrap; font-weight:600;}
+.hero-bullets li { display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.1); padding:10px 18px; border-radius:30px; font-size:1rem; backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,0.15);}
+.hero-bullets li span { color: var(--wood-l); }
+.hero-buttons{display:flex;gap:16px;flex-wrap:wrap; margin-bottom: 30px;}
+.hero-social { display: flex; align-items: center; gap: 16px; background: rgba(0,0,0,0.4); padding: 12px 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); display: inline-flex;}
+.hero-avatars { display: flex; margin-right: -10px; }
+.hero-avatars img { width: 36px; height: 36px; border-radius: 50%; border: 2px solid #222; margin-left: -12px; }
+.hero-social p { margin: 0; font-size: 0.95rem; color: rgba(255,255,255,0.9); line-height: 1.3; }
+
+/* --- 2. ПРОБЛЕМА (ИНЖЕНЕРИЯ) --- */
+.problem{padding:90px 0;background:var(--white)}
+.problem-header{text-align:center;max-width:850px;margin:0 auto 50px}
+.problem-compare{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.problem-card{padding:40px;border-radius:var(--radius-lg);border:2px solid transparent;background:var(--bg);position:relative;overflow:hidden;}
+.problem-card.bad{background:var(--danger-bg);border-color:rgba(192,57,43,.2)}
+.problem-card.good{background:var(--success-bg);border-color:rgba(29,122,63,.2)}
+.problem-card h4{font-size:1.4rem;margin-bottom:16px; display:flex; align-items:center; gap:10px;}
+.problem-card p{font-size:1.05rem; line-height:1.7; color:var(--text);}
+
+/* --- 3. КАТАЛОГ --- */
+.catalog{padding:90px 0;background:var(--bg-alt);}
+.catalog-intro{text-align:center;max-width:700px;margin:0 auto 50px}
+.catalog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+.catalog-card{background:var(--white); border:2px solid rgba(184,134,58,0.3); border-radius:var(--radius-lg); overflow:hidden; display:flex; flex-direction:column; transition:var(--transition); box-shadow:0 4px 16px rgba(184,134,58,.1);}
+.catalog-card:hover{border-color:var(--wood); transform:translateY(-6px); box-shadow:0 12px 32px rgba(184,134,58,.3);}
+.catalog-card-visual{width:100%; aspect-ratio:4/3; background-size:cover; background-position:center; background-color:var(--graphite-l); display:flex; align-items:center; justify-content:center; cursor:pointer;}
+.placeholder-img{color:rgba(255,255,255,.4);text-align:center;font-weight:bold;font-size:1.1rem;line-height:1.4;}
+.placeholder-img small{display:block;font-weight:normal;font-size:.85rem;}
+.catalog-card-body{padding:28px;display:flex;flex-direction:column;flex-grow:1;}
+.catalog-card-title{font-size:1.3rem;margin-bottom:8px;color:var(--graphite);}
+.catalog-card-size{display:inline-block;font-size:.85rem;color:var(--wood-d);margin-bottom:16px;font-weight:700; background:var(--wood-glow); padding:4px 10px; border-radius:6px;}
+.catalog-card-desc{font-size:.95rem;color:var(--text-light);margin-bottom:20px;line-height:1.6;flex-grow:1;}
+.catalog-card-price{font-weight:900; font-size: 1.35rem; color:var(--graphite); margin-bottom: 20px;}
+.catalog-card-footer{padding-top:20px;margin-top:auto;border-top:1px solid var(--border-light)}
+
+/* --- 4. БЛОК ПОСЛЕ КАТАЛОГА (CTA) --- */
+.post-catalog { padding: 60px 0; text-align: center; background: var(--bg-warm); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
+.post-catalog h2 { margin-bottom: 12px; }
+.post-catalog p { font-size: 1.15rem; color: var(--text-light); margin-bottom: 24px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+/* --- 5. СТРАХИ (ОТРАБОТКА ВОЗРАЖЕНИЙ) --- */
+.objections { padding: 90px 0; background: var(--graphite); color: var(--white); }
+.objections-header { text-align: center; max-width: 800px; margin: 0 auto 50px; }
+.objections-header h2 { color: var(--white); }
+.obj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.obj-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 32px; border-radius: var(--radius-lg); }
+.obj-card h3 { color: var(--wood-l); font-size: 1.25rem; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.obj-card p { color: rgba(255,255,255,0.7); font-size: 1rem; line-height: 1.6; }
+
+/* --- 6. ПРЕИМУЩЕСТВА --- */
+.benefits{padding:90px 0;background:var(--white)}
+.benefits-header{text-align:center;max-width:800px;margin:0 auto 50px}
+.benefits-grid{display:grid;grid-template-columns:repeat(2, 1fr);gap:24px}
+.benefit-card{padding:32px;background:var(--bg-alt);border-radius:var(--radius-lg);border:1px solid var(--border-light); display:flex; gap:20px; align-items:flex-start;}
+.benefit-icon{font-size:2.5rem; line-height:1; flex-shrink:0;}
+.benefit-text h4{font-size:1.25rem; margin-bottom:8px;}
+.benefit-text p{color:var(--text-light); font-size:1rem; line-height:1.6;}
+
+/* --- 7. КВИЗ (ВОРОНКА) --- */
+.quiz-section{padding:90px 0;background:var(--bg-warm)}
+.quiz-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:start}
+.quiz-wrapper{background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid var(--border)}
+.quiz-header{background:var(--graphite);color:var(--white);padding:24px 32px; display:flex; justify-content:space-between; align-items:center;}
+.quiz-progress{font-size:0.9rem; color:var(--wood-l); font-weight:bold;}
+.quiz-step{padding:40px;display:none}
+.quiz-step.active{display:block; animation: fadeIn 0.4s ease;}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.quiz-options{display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:16px;}
+.quiz-option{display:flex;align-items:flex-start;gap:16px;padding:20px;border:2px solid var(--border-light);border-radius:var(--radius);cursor:pointer;transition:var(--transition);background:var(--bg)}
+.quiz-option:hover{border-color:rgba(184,134,58,.5); background:var(--white);}
+.quiz-option.selected{border-color:var(--wood);background:var(--wood-glow);box-shadow:var(--shadow-sm);}
+.quiz-option-radio, .quiz-option-check{width:24px;height:24px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px; background:var(--white);}
+.quiz-option-radio{border-radius:50%;}
+.quiz-option-check{border-radius:6px;}
+.quiz-option.selected .quiz-option-radio{border-color:var(--wood)}
+.quiz-option.selected .quiz-option-radio::after{content:'';width:12px;height:12px;border-radius:50%;background:var(--wood)}
+.quiz-option.selected .quiz-option-check{border-color:var(--wood);background:var(--wood)}
+.quiz-option.selected .quiz-option-check::after{content:'✓';color:var(--white);font-size:16px;font-weight:bold;}
+.quiz-option-text{font-weight:700;font-size:1.05rem;line-height:1.3; color:var(--graphite);}
+.quiz-option-desc{font-size:0.85rem; color:var(--text-light); margin-top:5px; line-height:1.4;}
+.quiz-form input{width:100%;padding:18px 20px;border:2px solid var(--border-light);border-radius:var(--radius);font-size:1.05rem;margin-bottom:16px;}
+
+/* --- 8. FAQ --- */
+.faq{padding:90px 0;background:var(--white)}
+.faq-intro{text-align:center;max-width:600px;margin:0 auto 40px}
+.faq-list{max-width:800px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border-light); margin-bottom:10px;}
+.faq-question{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;cursor:pointer;font-weight:700;font-size:1.1rem;user-select:none; color:var(--graphite);}
+.faq-question:hover{color:var(--wood-d);}
+.faq-chevron{width:32px;height:32px;border-radius:50%;background:var(--bg-alt);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:var(--transition); color:var(--wood-d);}
+.faq-item.open .faq-chevron{background:var(--wood); color:var(--white); transform:rotate(180deg);}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease}
+.faq-item.open .faq-answer{max-height:500px;padding:0 0 24px; color:var(--text-light); font-size:1.05rem; line-height:1.7;}
+
+/* --- 9. КОНТАКТЫ --- */
+.contacts{padding:90px 0;background:var(--bg-alt)}
+.contacts-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:30px}
+.contact-card{display:flex;flex-direction:column;justify-content:center;padding:40px;background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);border:1px solid var(--border-light); text-align:center;}
+.contact-address{grid-column:1/-1;padding:40px;background:var(--graphite);color:var(--white);border-radius:var(--radius-lg); text-align:center;}
+
+/* --- МОДАЛКИ --- */
+.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;z-index:300;background:rgba(0,0,0,.85);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.active{display:flex; animation: fadeIn .2s ease;}
+.modal-box{background:var(--white);border-radius:var(--radius-lg);max-width:650px;width:100%;max-height:90vh;overflow-y:auto;padding:40px;position:relative;box-shadow:var(--shadow-lg);}
+.modal-close{position:absolute;top:20px;right:20px;background:var(--bg-alt);border:none;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;cursor:pointer;z-index:410;color:var(--text-light);transition:var(--transition);}
+.modal-close:hover{background:var(--wood);color:var(--white);transform:rotate(90deg);}
+
+#lightbox { z-index: 400; flex-direction: column; }
+#lightbox-img { max-width: 90%; max-height: 85vh; border-radius: 8px; object-fit: contain; box-shadow: var(--shadow-lg); position: relative; z-index: 402; user-select:none; }
+.lb-btn { position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:white; border:none; font-size:2.5rem; width:60px; height:80px; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:405; border-radius:12px; transition:0.3s; backdrop-filter:blur(4px);}
+.lb-btn:hover { background:var(--wood); }
+.lb-prev { left: 30px; }
+.lb-next { right: 30px; }
+.lb-click-area { position:absolute; top:0; bottom:0; width:50%; z-index:401; cursor:pointer;}
+.lb-click-left { left:0; }
+.lb-click-right { right:0; }
+
+@media(max-width:900px){
+  .problem-compare, .catalog-grid, .benefits-grid, .obj-grid {grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .problem-compare, .catalog-grid, .benefits-grid, .obj-grid {grid-template-columns:1fr}
+  .quiz-layout, .contacts-grid{grid-template-columns:1fr}
+  .quiz-info{order:2; margin-top:20px;} .quiz-wrapper{order:1} 
+  .hero{padding:70px 0 80px;}
+  .lb-btn{font-size:1.8rem; width:45px; height:60px; left:10px;} .lb-next{right:10px; left:auto;}
+  .modal-box{padding:24px;}
+  .sticky-bar { bottom: 15px; right: 15px; }
+  .sticky-calc span { display: none; }
+  .sticky-calc { padding: 15px; border-radius: 50%; width: 54px; height: 54px; justify-content: center; }
+  .sticky-calc::after { content: '🧮'; font-size: 1.4rem; }
+
+  /* --- НОВЫЕ СТИЛИ ДЛЯ ОПТИМИЗАЦИИ ШАПКИ --- */
+  .header-top { display: none; } /* Скрываем верхнюю полоску с адресом */
+  .header-main { padding: 8px 0; } /* Делаем шапку тоньше */
+  .logo { font-size: 1.15rem; } /* Чуть уменьшаем главное название */
+  .logo small { display: none; } /* Скрываем "Сибирский стандарт качества" */
+  .header-phone { font-size: 1.15rem; } /* Уменьшаем номер телефона */
+  .header-phone small { font-size: 0.75rem; } /* Уменьшаем подпись "Артем, собственник" */
+}
+</style>
+</head>
+<body>
+
+<div class="sticky-bar">
+    <a href="#quiz" class="sticky-btn sticky-calc js-scroll"><span>Рассчитать стоимость</span></a>
+    <div class="sticky-icons">
+        <a href="https://t.me/Greenbook" target="_blank" class="sticky-btn sticky-icon bg-tg" title="Написать в Telegram">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.96 9.2c-.14.65-.53.81-1.08.5L11.5 15.6l-1.44 1.39c-.16.16-.3.3-.61.3l.21-3.03 5.51-4.98c.24-.22-.05-.34-.37-.13l-6.81 4.29-2.94-.92c-.64-.2-.65-.64.13-.95l11.5-4.43c.53-.2.99.12.88.91z"/></svg>
+        </a>
+        <a href="tel:+79245346887" class="sticky-btn sticky-icon bg-phone" title="Позвонить">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        </a>
+    </div>
+</div>
+
+<header class="site-header">
+<div class="header-top"><div class="container"><div style="display:flex; gap:20px;"><span style="color:var(--wood-l); font-weight:bold;">📍 Производство: Хомутово</span><span>Пн-Сб 9:00-19:00</span></div></div></div>
+<div class="header-main"><div class="container header-inner">
+<div class="logo">Инженерные <span>Бани</span><small>Сибирский стандарт качества</small></div>
+<div class="header-cta"><a href="tel:+79245346887" class="header-phone">+7 (924) 534-68-87<small>Артем, собственник</small></a></div>
+</div></div>
+</header>
+
+<section class="hero" id="hero">
+<div class="container fade-up">
+<div class="hero-content">
+<div class="section-label" style="background:rgba(212, 165, 90, 0.2); color: var(--wood-l); border:none;">Заказ напрямую с производства</div>
+<h1>Вы хотите сэкономить 50 000 ₽ сейчас, чтобы через два сезона полностью перестраивать сгнившую баню?</h1>
+<p class="hero-mirror"><strong>Десятки объявлений, у всех «премиум качество», а цены скачут от 150 тысяч до миллиона. На фото все бани выглядят одинаково красиво.</strong></p>
+<p style="font-size: 1.1rem; color: rgba(255,255,255,.8); margin-bottom: 24px; line-height: 1.6;">Вы наверняка думаете, что все строители - это просто «сборщики коробок», которые накрутят цену в договоре, зашьют сырую сосну вагонкой и исчезнут. <strong>И чаще всего вы правы.</strong></p>
+<ul class="hero-bullets">
+    <li><span>✔️</span> Гарантия 1 год</li>
+    <li><span>✔️</span> Срок от 5 до 12 дней</li>
+    <li><span>✔️</span> Доставка по всей области</li>
+</ul>
+<div class="hero-buttons">
+<a href="#catalog" class="btn btn-primary js-scroll">Смотреть каталог с ценами 2026</a>
+<a href="#quiz" class="btn btn-outline js-scroll" style="border-color:rgba(255,255,255,.3); color:#fff;">Получить индивидуальный расчет</a>
+</div>
+<div class="hero-social">
+    <div class="hero-avatars">
+        <img src="https://ui-avatars.com/api/?name=Алексей&background=D4A55A&color=fff&rounded=true" alt="client">
+        <img src="https://ui-avatars.com/api/?name=Елена&background=1E1E1E&color=fff&rounded=true" alt="client">
+        <img src="https://ui-avatars.com/api/?name=Михаил&background=8E6620&color=fff&rounded=true" alt="client">
+    </div>
+    <p>Уже поставили более <strong>120 бань</strong> в Иркутской области</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="problem fade-up" id="problem">
+<div class="container">
+<div class="problem-header">
+<div class="section-label">Важно знать перед покупкой</div>
+<h2>Почему 90% дешевых бань с досок объявлений сгнивают за 3 года?</h2>
+<p style="font-size:1.15rem; color:var(--text-light);">Секрет кроется в одном узле, на котором экономят гаражные сборщики ради низкой цены. Это — отсутствие вентилируемого фасада.</p>
+</div>
+<div class="problem-compare">
+<div class="problem-card bad">
+<h4 style="color:var(--danger)">✖ Обычная баня-«бытовка»</h4>
+<p>Вагонку прибивают вплотную к пленке. В бане +90°C, на улице -35°C. Влага заперта внутри стены. Каркас гниет, черный грибок появляется уже через две зимы. Снаружи красиво, а внутри — опасная для здоровья труха. <strong>Итог: демонтаж через 3-4 года.</strong></p>
+</div>
+<div class="problem-card good">
+<h4 style="color:var(--success)">✔ Наша инженерная баня</h4>
+<p>Между внешней отделкой и каркасом мы <strong>обязательно</strong> монтируем воздушный зазор. Вся излишняя влага выветривается наружу. Стены всегда сухие, утеплитель цел. Доска — только камерной сушки. <strong>Итог: баня служит десятилетиями без переделок.</strong></p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="catalog fade-up" id="catalog">
+<div class="container">
+<div class="catalog-intro">
+<div class="section-label">Модельный ряд</div>
+<h2>Доступные форматы и цены</h2>
+<p style="font-size:1.1rem; color:var(--text-light);">Кедр, лиственница, вентфасад и сухой лес — в каждой бане без исключения. Цена зависит только от габаритов и наполнения.</p>
+</div>
+<div class="catalog-grid">
+
+<div class="catalog-card">
+<div class="catalog-card-visual" style="background-image: url('1 2x3.jpg');" onclick="openCatalog('Мини', '2х3 м', 'Только парная. Чистый жар, ничего лишнего.', ['1 2x3.jpg', '2 2x3.jpg', '3 2x3.jpg'], null)"></div>
+<div class="catalog-card-body">
+<h3 class="catalog-card-title">Мини</h3><div class="catalog-card-size">2 х 3 м</div>
+<p class="catalog-card-desc">Только парная. Чистый жар, ничего лишнего. Отличный вариант для быстрого запуска.</p>
+<p class="catalog-card-price">210 000 ₽</p>
+<div class="catalog-card-footer"><button class="btn btn-outline btn-block" onclick="openCatalog('Мини', '2х3 м', 'Только парная. Чистый жар, ничего лишнего.', ['1 2x3.jpg', '2 2x3.jpg', '3 2x3.jpg'], null)">Изучить модель</button></div>
+</div></div>
+
+<div class="catalog-card">
+<div class="catalog-card-visual" style="background-image: url('2,2x3 баня.jpg');" onclick="openCatalog('Стандарт-мини', '2.2х3 м', 'Парная с теплым тамбуром. Идеально для зимы.', ['коллаж бани 2,2х3.png', 'баня 2 на 3.jpg', 'баня 2,2х3.jpg', 'баня 2.2 на 3.jpg', 'баня 2.2х3.jpg', '2,2x3 баня.jpg', '2,2х3 баня на участке.jpg', '2,2x3 каркасная баня.jpg', '2,2x3 каркасная баня тамбур.jpg'], '3-ка.mp4')"></div>
+<div class="catalog-card-body">
+<h3 class="catalog-card-title">Стандарт-мини</h3><div class="catalog-card-size">2.2 х 3 м</div>
+<p class="catalog-card-desc">Полноценная парная с теплым тамбуром. Идеальное решение для использования зимой.</p>
+<p class="catalog-card-price">от 250 000 ₽</p>
+<div class="catalog-card-footer"><button class="btn btn-outline btn-block" onclick="openCatalog('Стандарт-мини', '2.2х3 м', 'Парная с теплым тамбуром. Идеально для зимы.', ['коллаж бани 2,2х3.png', 'баня 2 на 3.jpg', 'баня 2,2х3.jpg', 'баня 2.2 на 3.jpg', 'баня 2.2х3.jpg', '2,2x3 баня.jpg', '2,2х3 баня на участке.jpg', '2,2x3 каркасная баня.jpg', '2,2x3 каркасная баня тамбур.jpg'], '3-ка.mp4')">Изучить модель</button></div>
+</div></div>
+
+<div class="catalog-card">
+<div class="catalog-card-visual" style="background-image: url('2,2х4 баня.jpg');" onclick="openCatalog('Компакт', '2.2х4 м', 'Классика с комнатой отдыха. Хит для дачи.', ['коллаж бани 2,2х4.png', 'баня 2 на 4.png', 'баня 2,2 на 4.png', 'баня 2,2х4.png', 'баня 2.2х4.png', '2,2х4 баня.jpg', '2,2x4 баня парилка.jpg', '2,2x4 баня на участок.jpg', '2,2x4 комната отдыха.jpg', '2,2x4 комната отдыха 2.jpg', '2,2x4 морилка.jpg'], '4-ка.mp4')"></div>
+<div class="catalog-card-body">
+<h3 class="catalog-card-title">Компакт</h3><div class="catalog-card-size">2.2 х 4 м</div>
+<p class="catalog-card-desc">Классика: парная + уютная комната отдыха. Абсолютный хит для семейной дачи.</p>
+<p class="catalog-card-price">от 315 000 ₽</p>
+<div class="catalog-card-footer"><button class="btn btn-outline btn-block" onclick="openCatalog('Компакт', '2.2х4 м', 'Классика с комнатой отдыха. Хит для дачи.', ['коллаж бани 2,2х4.png', 'баня 2 на 4.png', 'баня 2,2 на 4.png', 'баня 2,2х4.png', 'баня 2.2х4.png', '2,2х4 баня.jpg', '2,2x4 баня парилка.jpg', '2,2x4 баня на участок.jpg', '2,2x4 комната отдыха.jpg', '2,2x4 комната отдыха 2.jpg', '2,2x4 морилка.jpg'], '4-ка.mp4')">Изучить модель</button></div>
+</div></div>
+
+<div class="catalog-card">
+<div class="catalog-card-visual" style="background-image: url('6 баня 1.jpg');" onclick="openCatalog('Практик (с хозблоком)', '2.2х6 м', 'Парная, комната отдыха и отдельный вместительный хозблок.', ['6 баня 1.jpg', '6 баня 2.jpg', '6 баня 3.jpg', '6 баня 4.jpg', '6 баня 5.jpg', '6 баня 6.jpg', '6 баня 7.jpg', '6 баня 8.jpg', '6 баня 9.jpg', '6 баня 10.jpg', '6 баня 11.jpg'], '2,2х6 парная + комната отдыха + хозблок.mp4')"></div>
+<div class="catalog-card-body">
+<h3 class="catalog-card-title">Практик (с хозблоком)</h3><div class="catalog-card-size">2.2 х 6 м</div>
+<p class="catalog-card-desc">Парная, комната отдыха и огромный встроенный хозблок для дров и инвентаря.</p>
+<p class="catalog-card-price">480 000 ₽</p>
+<div class="catalog-card-footer"><button class="btn btn-outline btn-block" onclick="openCatalog('Практик (с хозблоком)', '2.2х6 м', 'Парная, комната отдыха и отдельный вместительный хозблок.', ['6 баня 1.jpg', '6 баня 2.jpg', '6 баня 3.jpg', '6 баня 4.jpg', '6 баня 5.jpg', '6 баня 6.jpg', '6 баня 7.jpg', '6 баня 8.jpg', '6 баня 9.jpg', '6 баня 10.jpg', '6 баня 11.jpg'], '2,2х6 парная + комната отдыха + хозблок.mp4')">Изучить модель</button></div>
+</div></div>
+
+<div class="catalog-card">
+<div class="catalog-card-visual" style="background-image: url('2,45х4,8 баня.jpg');" onclick="openCatalog('Комфорт', '2.45х4.8 м', 'Оптимальный объем и свобода внутри для всей семьи.', ['коллаж 2,45х4,8.jpeg', '1 2,45х4,8.jpg', '2 2,45х4,8.jpg', '3 2,45х4,8.jpg', '4 2,45х4,8.jpg', '2,45х4,8 баня.jpg', '2,45х4,8 парилка.jpg', '2,45х4,8 парилка 2.jpg', 'баня 2,45х4,8.jpg'], '5-ка.mp4')"></div>
+<div class="catalog-card-body">
+<h3 class="catalog-card-title">Комфорт</h3><div class="catalog-card-size">2.45 х 4.8 м</div>
+<p class="catalog-card-desc">Увеличенная ширина. Оптимальный объем и свобода внутри для большой компании.</p>
+<p class="catalog-card-price">от 480 000 ₽</p>
+<div class="catalog-card-footer"><button class="btn btn-outline btn-block" onclick="openCatalog('Комфорт', '2.45х4.8 м', 'Оптимальный объем и свобода внутри для всей семьи.', ['коллаж 2,45х4,8.jpeg', '1 2,45х4,8.jpg', '2 2,45х4,8.jpg', '3 2,45х4,8.jpg', '4 2,45х4,8.jpg', '2,45х4,8 баня.jpg', '2,45х4,8 парилка.jpg', '2,45х4,8 парилка 2.jpg', 'баня 2,45х4,8.jpg'], '5-ка.mp4')">Изучить модель</button></div>
+</div></div>
+
+<div class="catalog-card">
+<div class="catalog-card-visual" onclick="openCatalog('Стиль', '2.5х5 м', 'Больше объема за те же деньги. Самый выгодный размер.', [], null)"><span class="placeholder-img">Фото в обработке<br><small>Скоро добавим в каталог</small></span></div>
+<div class="catalog-card-body">
+<h3 class="catalog-card-title">Стиль</h3><div class="catalog-card-size">2.5 х 5 м</div>
+<p class="catalog-card-desc">Больше полезного объема за те же деньги. Самый выгодный размер в пересчете на площадь.</p>
+<p class="catalog-card-price">490 000 ₽</p>
+<div class="catalog-card-footer"><button class="btn btn-outline btn-block" onclick="openCatalog('Стиль', '2.5х5 м', 'Больше объема за те же деньги. Самый выгодный размер.', [], null)">Изучить модель</button></div>
+</div></div>
+
+<div class="catalog-card">
+<div class="catalog-card-visual" style="background-image: url('3x5 1.png');" onclick="openCatalog('Люкс', '3х5 м', 'Максимальная ширина и комфорт «бизнес-класса».', ['3x5 1.png', '3x5 2.png', '3x5 3.png', '3x5 4.jpg', '3x5 5.jpg'], null)"></div>
+<div class="catalog-card-body">
+<h3 class="catalog-card-title">Люкс</h3><div class="catalog-card-size">3 х 5 м</div>
+<p class="catalog-card-desc">Максимальная ширина модуля. Настоящий комфорт «бизнес-класса» для ценителей.</p>
+<p class="catalog-card-price">530 000 ₽</p>
+<div class="catalog-card-footer"><button class="btn btn-outline btn-block" onclick="openCatalog('Люкс', '3х5 м', 'Максимальная ширина и комфорт «бизнес-класса».', ['3x5 1.png', '3x5 2.png', '3x5 3.png', '3x5 4.jpg', '3x5 5.jpg'], null)">Изучить модель</button></div>
+</div></div>
+
+<div class="catalog-card">
+<div class="catalog-card-visual" onclick="openCatalog('Макси', '2.2х6 м', 'Три зоны: парная, мойка и теплая раздевалка.', [], null)"><span class="placeholder-img">Фото в обработке<br><small>Скоро добавим в каталог</small></span></div>
+<div class="catalog-card-body">
+<h3 class="catalog-card-title">Макси (3 отделения)</h3><div class="catalog-card-size">2.2 х 6 м</div>
+<p class="catalog-card-desc">Три полноценные изолированные зоны: парная, душевая (мойка) и теплая комната отдыха.</p>
+<p class="catalog-card-price">620 000 ₽</p>
+<div class="catalog-card-footer"><button class="btn btn-outline btn-block" onclick="openCatalog('Макси', '2.2х6 м', 'Три зоны: парная, мойка и теплая раздевалка.', [], null)">Изучить модель</button></div>
+</div></div>
+
+<div class="catalog-card">
+<div class="catalog-card-visual" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'});"><span class="placeholder-img">Разработка 3D<br><small>Индивидуально</small></span></div>
+<div class="catalog-card-body">
+<h3 class="catalog-card-title">Индивидуальный проект</h3><div class="catalog-card-size">от 24 м² (например, 6х4)</div>
+<p class="catalog-card-desc">Просторная модульная баня-дом по вашему или нашему эскизу. Стыкуем на участке из 2-3 модулей.</p>
+<p class="catalog-card-price">Смета по проекту</p>
+<div class="catalog-card-footer"><button class="btn btn-primary btn-block" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'});">Запросить 3D-проект</button></div>
+</div></div>
+
+</div>
+</div>
+</section>
+
+<section class="post-catalog fade-up">
+<div class="container">
+    <h2>Не нашли подходящий размер?</h2>
+    <p>Рассчитаем баню под ваш участок и задачи максимально быстро!</p>
+    <a href="#quiz" class="btn btn-primary btn-lg js-scroll" style="box-shadow: 0 6px 20px rgba(184,134,58,.35);">Получить индивидуальный расчет</a>
+</div>
+</section>
+
+<section class="objections fade-up" id="trust">
+<div class="container">
+    <div class="objections-header">
+        <div class="section-label" style="background: rgba(255,255,255,0.1); color: #fff; border-color:rgba(255,255,255,0.2);">Честный подход</div>
+        <h2>3 главных страха при заказе бани (и как мы их решаем)</h2>
+    </div>
+    <div class="obj-grid">
+        <div class="obj-card">
+            <h3>😨 Баня быстро сгниёт?</h3>
+            <p>Мы монтируем <strong>вентилируемый фасад</strong> и используем только доску камерной сушки. Дерево дышит, влага не скапливается под вагонкой, поэтому наша баня стоит десятилетиями.</p>
+        </div>
+        <div class="obj-card">
+            <h3>😨 Обманут на деньги?</h3>
+            <p><strong>Мы не берем предоплату за воздух.</strong> Вы платите за реальный результат по белому договору. Цена фиксируется до старта работ и не вырастает в процессе.</p>
+        </div>
+        <div class="obj-card">
+            <h3>😨 Привезут халтуру?</h3>
+            <p>Вы не покупаете "кота в мешке". Вы лично приезжаете на наше <strong>производство в Хомутово</strong> и проверяете качество сборки, скрытые узлы и материалы.</p>
+        </div>
+    </div>
+</div>
+</section>
+
+<section class="benefits fade-up">
+<div class="container">
+<div class="benefits-header">
+<div class="section-label">Почему мы</div>
+<h2>Выгоды, которые вы получаете</h2>
+</div>
+<div class="benefits-grid">
+<div class="benefit-card">
+<div class="benefit-icon">⏱️</div>
+<div class="benefit-text"><h4>Паритесь в день доставки</h4><p>Баня приезжает к вам на участок в готовом виде. Мы устанавливаем её на фундамент, подключаем печь и электрику за 1 световой день.</p></div>
+</div>
+<div class="benefit-card">
+<div class="benefit-icon">🛡️</div>
+<div class="benefit-text"><h4>Никаких мышей в стенах</h4><p>Мы обязательно прошиваем основание оцинкованной сеткой с мелкой ячейкой. Грызуны физически не смогут добраться до утеплителя.</p></div>
+</div>
+<div class="benefit-card">
+<div class="benefit-icon">💰</div>
+<div class="benefit-text"><h4>Экономия на фундаменте</h4><p>Вам не нужно заливать дорогую бетонную плиту. Наша конструкция легкая, но сверхпрочная. Достаточно винтовых свай или бетонных блоков.</p></div>
+</div>
+<div class="benefit-card">
+<div class="benefit-icon">🌲</div>
+<div class="benefit-text"><h4>Запах кедра, а не сырости</h4><p>Мы используем премиальный кедр в парной и лиственницу на полу. Никакого дешевого сырого леса. Вы получаете эстетику дорогой сауны.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="quiz-section fade-up" id="quiz">
+<div class="container">
+<div class="quiz-layout">
+<div class="quiz-info">
+<div class="section-label">Индивидуальный расчет</div>
+<h2>Узнайте точную стоимость вашей бани + заберите подарок</h2>
+<p>Ответьте на 4 простых вопроса. Мы посчитаем смету до рубля с учетом вашей планировки.</p>
+<ul style="list-style:none; padding:0; margin-bottom:20px;">
+<li style="margin-bottom:10px; display:flex; gap:10px;"><span style="color:var(--wood);">✔</span> Расчет за 15 минут</li>
+<li style="margin-bottom:10px; display:flex; gap:10px;"><span style="color:var(--wood);">✔</span> Фиксация цены на 14 дней</li>
+<li style="margin-bottom:10px; display:flex; gap:10px;"><span style="color:var(--wood);">✔</span> Подарок (3D-проект или набор для бани)</li>
+</ul>
+</div>
+<div class="quiz-wrapper">
+<div class="quiz-header"><h3 style="color:#fff; margin:0;">Калькулятор бани</h3><span class="quiz-progress" id="quiz-counter">Шаг 1 из 5</span></div>
+
+<div class="quiz-step active" id="step1">
+<h4 style="margin-bottom:20px;">Какой формат бани вам нужен?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-value="Баня 3 метра" onclick="selectOption(this, false)"><div class="quiz-option-radio"></div><div><div class="quiz-option-text">Баня 3 метра</div><div class="quiz-option-desc">Компактный вариант. Идеально для небольшого участка.</div></div></div>
+<div class="quiz-option" data-value="Баня 4 метра" onclick="selectOption(this, false)"><div class="quiz-option-radio"></div><div><div class="quiz-option-text">Баня 4 метра</div><div class="quiz-option-desc">Классика. Парная + небольшая комната отдыха или тамбур.</div></div></div>
+<div class="quiz-option" data-value="Баня 5 метров" onclick="selectOption(this, false)"><div class="quiz-option-radio"></div><div><div class="quiz-option-text">Баня 5 метров</div><div class="quiz-option-desc">Семейный формат. Просторная комната отдыха и парная.</div></div></div>
+<div class="quiz-option" data-value="Баня 6 метров" onclick="selectOption(this, false)"><div class="quiz-option-radio"></div><div><div class="quiz-option-text">Баня 6 метров</div><div class="quiz-option-desc">Максимальная вместимость. Можно разместить 3 отдельные зоны.</div></div></div>
+<div class="quiz-option" data-value="Индивидуальный" onclick="selectOption(this, false)"><div class="quiz-option-radio"></div><div><div class="quiz-option-text">Индивидуальный / Модульный</div><div class="quiz-option-desc">Просторная баня-дом по вашему или нашему проекту.</div></div></div>
+<div class="quiz-option" data-value="Пока присматриваюсь" onclick="selectOption(this, false)"><div class="quiz-option-radio"></div><div><div class="quiz-option-text">Не знаю, пока присматриваюсь</div><div class="quiz-option-desc">Изучаю варианты, нужна помощь в выборе.</div></div></div>
+</div>
+<div class="quiz-nav"><button class="btn btn-primary" onclick="nextStep(2)">Далее →</button></div>
+</div>
+
+<div class="quiz-step" id="step2">
+<h4 style="margin-bottom:20px;">Какие зоны добавим? (Можно несколько)</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-value="Парная" onclick="selectOption(this, true)"><div class="quiz-option-check"></div><div><div class="quiz-option-text">Парная из кедра</div><div class="quiz-option-desc">Классическая парная с жаркой печью.</div></div></div>
+<div class="quiz-option" data-value="Комната отдыха" onclick="selectOption(this, true)"><div class="quiz-option-check"></div><div><div class="quiz-option-text">Комната отдыха</div><div class="quiz-option-desc">Уютное место для чаепития.</div></div></div>
+<div class="quiz-option" data-value="Санузел" onclick="selectOption(this, true)"><div class="quiz-option-check"></div><div><div class="quiz-option-text">Санузел под ключ</div><div class="quiz-option-desc">Унитаз, раковина и разводка воды.</div></div></div>
+<div class="quiz-option" data-value="Душевая" onclick="selectOption(this, true)"><div class="quiz-option-check"></div><div><div class="quiz-option-text">Отдельная душевая</div><div class="quiz-option-desc">Изолированная зона для мытья.</div></div></div>
+<div class="quiz-option" data-value="Хозблок" onclick="selectOption(this, true)"><div class="quiz-option-check"></div><div><div class="quiz-option-text">Хозблок</div><div class="quiz-option-desc">Отдельный вход под инвентарь или дрова.</div></div></div>
+<div class="quiz-option" data-value="Консультация" onclick="selectOption(this, true)"><div class="quiz-option-check"></div><div><div class="quiz-option-text">Не знаю, нужна консультация</div><div class="quiz-option-desc">Подскажите, как лучше спланировать.</div></div></div>
+</div>
+<div class="quiz-nav"><button class="btn btn-outline" onclick="prevStep(1)">← Назад</button><button class="btn btn-primary" onclick="nextStep(3)">Далее →</button></div>
+</div>
+
+<div class="quiz-step" id="step3">
+<h4 style="margin-bottom:20px;">Нужны ли дополнительные опции?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-value="Второе дыхание" onclick="selectOption(this, true)"><div class="quiz-option-check"></div><div><div class="quiz-option-text">«Второе дыхание»</div><div class="quiz-option-desc">Свежий воздух к лицу прямо в парной.</div></div></div>
+<div class="quiz-option" data-value="Два полка" onclick="selectOption(this, true)"><div class="quiz-option-check"></div><div><div class="quiz-option-text">Два полка вместо одного</div><div class="quiz-option-desc">Для большего комфорта и вместительности.</div></div></div>
+<div class="quiz-option" data-value="Панорамное окно" onclick="selectOption(this, true)"><div class="quiz-option-check"></div><div><div class="quiz-option-text">Панорамное окно</div><div class="quiz-option-desc">Безопасное каленое стекло.</div></div></div>
+<div class="quiz-option" data-value="Теплый пол" onclick="selectOption(this, true)"><div class="quiz-option-check"></div><div><div class="quiz-option-text">Подогрев пола</div><div class="quiz-option-desc">Для максимального комфорта зимой.</div></div></div>
+<div class="quiz-option" data-value="Пропустить" onclick="selectOption(this, true)"><div class="quiz-option-check"></div><div><div class="quiz-option-text">Пока ничего, пропустить шаг</div><div class="quiz-option-desc">Опции всегда можно добавить позже.</div></div></div>
+</div>
+<div class="quiz-nav"><button class="btn btn-outline" onclick="prevStep(2)">← Назад</button><button class="btn btn-primary" onclick="nextStep(4)">Далее →</button></div>
+</div>
+
+<div class="quiz-step" id="step4">
+<h4 style="margin-bottom:20px;">Когда планируете запуск бани?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-value="Срочно" onclick="selectOption(this, false)"><div class="quiz-option-radio"></div><div><div class="quiz-option-text">Как можно скорее</div><div class="quiz-option-desc">Баня нужна в ближайшие недели.</div></div></div>
+<div class="quiz-option" data-value="Через месяц" onclick="selectOption(this, false)"><div class="quiz-option-radio"></div><div><div class="quiz-option-text">В течение 1-2 месяцев</div><div class="quiz-option-desc">Планирую покупку в этом сезоне.</div></div></div>
+<div class="quiz-option" data-value="К сезону" onclick="selectOption(this, false)"><div class="quiz-option-radio"></div><div><div class="quiz-option-text">Ближе к сезону</div><div class="quiz-option-desc">Хочу зафиксировать цену заранее.</div></div></div>
+<div class="quiz-option" data-value="Просто присматриваюсь" onclick="selectOption(this, false)"><div class="quiz-option-radio"></div><div><div class="quiz-option-text">Пока просто присматриваюсь</div><div class="quiz-option-desc">Изучаю варианты и цены на будущее.</div></div></div>
+</div>
+<div class="quiz-nav"><button class="btn btn-outline" onclick="prevStep(3)">← Назад</button><button class="btn btn-primary" onclick="nextStep(5)">Далее →</button></div>
+</div>
+
+<div class="quiz-step" id="step5">
+<h4 style="margin-bottom:20px;">Готово! Куда отправить расчет и подарок?</h4>
+<div class="quiz-options" style="margin-bottom:20px;">
+<div class="quiz-option" data-value="3D-проект" onclick="selectOption(this, false)"><div class="quiz-option-radio"></div><div><div class="quiz-option-text">Хочу 3D-проект в подарок</div></div></div>
+<div class="quiz-option" data-value="Набор для бани" onclick="selectOption(this, false)"><div class="quiz-option-radio"></div><div><div class="quiz-option-text">Хочу подарочный набор</div></div></div>
+</div>
+<div class="quiz-form">
+<input type="text" id="q-name" placeholder="Как к вам обращаться?" required>
+<input type="tel" id="q-phone" placeholder="Номер для связи" required oninput="this.value = this.value.replace(/[^\d+]/g, '')">
+<button class="btn btn-primary btn-block" style="font-size:1.1rem; padding:20px;" onclick="submitQuiz()">Получить расчет стоимости</button>
+</div>
+<div class="quiz-nav"><button class="btn btn-outline" onclick="prevStep(4)">← Назад</button></div>
+</div>
+
+<div class="quiz-step" id="step-success"><div style="text-align: center; padding: 40px 20px;"><div style="font-size:3rem; color:var(--success); margin-bottom:20px;">✓</div><h3 style="margin-bottom:15px;">Данные успешно отправлены!</h3><p style="color:var(--text-light); font-size:1.1rem;">Собственник Артем свяжется с вами в рабочее время.</p></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="faq fade-up" id="faq">
+<div class="container">
+<div class="faq-intro"><div class="section-label">Частые вопросы</div><h2>Ответы на вопросы</h2></div>
+<div class="faq-list">
+<div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Осуществляете ли вы доставку?<div class="faq-chevron"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg></div></div><div class="faq-answer">Да, мы осуществляем бережную доставку готовых бань по всему Иркутску и Иркутской области. Баня приезжает к вам на участок в готовом виде, и мы устанавливаем ее за 1 день.</div></div>
+<div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">А если участок под небольшим наклоном?<div class="faq-chevron"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg></div></div><div class="faq-answer">Никаких проблем. В таких случаях мы рекомендуем установить винтовые сваи. Они легко компенсируют перепад высот.</div></div>
+<div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Что входит в базовую комплектацию?<div class="faq-chevron"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg></div></div><div class="faq-answer">В базу УЖЕ включено всё: каркас, утепление, вентфасад, внутренняя обшивка Кедром/Сосной, полы из Лиственницы, печь-каменка, полки, двери, окно и электрика.</div></div>
+<div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Смогу ли я париться в ней зимой в -30°C?<div class="faq-chevron"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg></div></div><div class="faq-answer">Абсолютно. Баня прогревается до 90 градусов за 40-60 минут даже в сибирские морозы и отлично держит тепло благодаря эффекту термоса.</div></div>
+</div>
+</div>
+</section>
+
+<section class="contacts fade-up" id="contacts">
+<div class="container">
+<div class="section-label">Контакты</div>
+<h2 style="text-align:center;">Остались вопросы или нестандартный проект?</h2>
+<p style="text-align:center; max-width:600px; margin:0 auto 30px; font-size:1.1rem; color:var(--text-light);">Я, Артем, собственник производства. Напишите мне напрямую, я лично проконсультирую вас.</p>
+<div class="contacts-grid">
+<div class="contact-card">
+<span style="font-size:1rem; color:var(--text-light); margin-bottom:10px;">Телефон для звонков:</span>
+<a href="tel:+79245346887" style="font-weight:900; font-size:2.2rem; color:var(--graphite); display:block; margin-bottom:5px;">+7 (924) 534-68-87</a>
+<span style="color:var(--wood-d); font-weight:bold;">Артем (Собственник)</span>
+</div>
+<div class="contact-card" style="background:var(--white);">
+<span style="font-size:1rem; color:var(--text-light); margin-bottom:15px;">Быстрая связь со мной в мессенджере:</span>
+<a href="https://t.me/Greenbook" target="_blank" class="btn btn-tg" style="font-size:1.2rem; padding:20px;">Написать в Telegram →</a>
+</div>
+<div class="contact-address">
+<h3 style="color:var(--white); margin-bottom:10px;">Производство: Иркутская обл., с. Хомутово</h3>
+<p style="color:rgba(255,255,255,.7); font-size:1.1rem;">Режим работы: Пн-Сб с 9:00 до 19:00. <br>Воскресенье — по предварительной записи. Ждем вас!</p>
+</div>
+</div>
+</div>
+</section>
+
+<footer style="padding: 24px 0; background: #0a0a0a; color: rgba(255,255,255,.4); text-align: center; font-size: 0.9rem;">
+<div class="container"><span>© 2026 Инженерные Каркасные Бани Иркутск. Все права защищены.</span></div>
+</footer>
+
 <div class="modal-overlay" id="modal-catalog" onclick="closeModalOnBg(event, 'catalog')">
 <div class="modal-box">
 <button class="modal-close" onclick="closeModal('catalog')">&times;</button>
@@ -30,7 +604,6 @@
 </div>
 
 <script>
-// --- 1. АНИМАЦИИ И СКРОЛЛ ---
 document.addEventListener("DOMContentLoaded", function() {
   var observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -42,22 +615,7 @@ document.addEventListener("DOMContentLoaded", function() {
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 });
 
-document.querySelectorAll('.js-scroll').forEach(function(anchor){
-    anchor.addEventListener('click', function(e){
-        e.preventDefault();
-        var target = document.querySelector(this.getAttribute('href'));
-        if(target) {
-            var offset = 60; 
-            var elementPosition = target.getBoundingClientRect().top;
-            var offsetPosition = elementPosition + window.pageYOffset - offset;
-            window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-        }
-    });
-});
-
-// --- 2. ЛОГИКА КВИЗА (БЕЗ ПРЫЖКОВ И ГЛЮКОВ) ---
 var quizData={step1:'', step2:[], step3:[], step4:'', step5:''};
-
 function selectOption(el, isMultiple){
     var step = el.closest('.quiz-step');
     var value = el.getAttribute('data-value');
@@ -77,7 +635,6 @@ function selectOption(el, isMultiple){
         if(step.id === 'step3') quizData.step3 = selectedArr;
     }
 }
-
 function showStep(n){
     ['step1','step2','step3','step4','step5','step-success'].forEach(function(id){
         var el = document.getElementById(id);
@@ -89,68 +646,23 @@ function showStep(n){
     
     if(n <= 5) document.getElementById('quiz-counter').innerText = 'Шаг ' + n + ' из 5';
 }
-
 function nextStep(n){ showStep(n); }
 function prevStep(n){ showStep(n); }
 
-// --- 3. БЕЗОПАСНАЯ ОТПРАВКА ЧЕРЕЗ WEB3FORMS ---
-async function submitQuiz() {
+function submitQuiz() {
     var name = document.getElementById('q-name').value;
     var phone = document.getElementById('q-phone').value;
-    
-    if (!name || phone.length < 5) { 
-        alert('Пожалуйста, корректно заполните Имя и Телефон!'); 
-        return; 
-    }
+    if (!name || phone.length < 5) { alert('Пожалуйста, корректно заполните Имя и Телефон!'); return; }
 
-    // Меняем текст кнопки, чтобы клиент видел процесс
-    var btn = document.querySelector('#step5 .btn-primary');
-    var originalText = btn.innerText;
-    btn.innerText = 'Отправка...';
-    btn.disabled = true;
+    var text = "🔥 НОВАЯ ЗАЯВКА С САЙТА 🔥\n\n👤 Имя: " + name + "\n📞 Телефон: " + phone + "\n\n🔹 Формат: " + (quizData.step1 || 'Не выбран') + "\n🔹 Зоны: " + (quizData.step2.length ? quizData.step2.join(', ') : 'Не выбрано') + "\n🔹 Допы: " + (quizData.step3.length ? quizData.step3.join(', ') : 'Не выбрано') + "\n🔹 Сроки: " + (quizData.step4 || 'Не выбраны') + "\n🔹 Бонус: " + (quizData.step5 || 'Не выбран');
 
-    // Собираем красивое сообщение из твоего массива ответов
-    var text = "🔥 НОВАЯ ЗАЯВКА С КВИЗА 🔥\n\n" + 
-               "👤 Имя: " + name + "\n" + 
-               "📞 Телефон: " + phone + "\n\n" + 
-               "🔹 Формат: " + (quizData.step1 || 'Не выбран') + "\n" + 
-               "🔹 Зоны: " + (quizData.step2.length ? quizData.step2.join(', ') : 'Не выбрано') + "\n" + 
-               "🔹 Допы: " + (quizData.step3.length ? quizData.step3.join(', ') : 'Не выбрано') + "\n" + 
-               "🔹 Сроки: " + (quizData.step4 || 'Не выбраны') + "\n" + 
-               "🔹 Бонус: " + (quizData.step5 || 'Не выбран');
+    var botToken = '8752208707:AAFmcd_edtXl-piuofe9qX4UQr096MDU5Ns'; 
+    var chatId = '185772715';
+    var url = 'https://api.telegram.org/bot' + botToken + '/sendMessage?chat_id=' + chatId + '&text=' + encodeURIComponent(text);
 
-    // Настройки Web3Forms
-    const formData = {
-        access_key: 'b1e5ac10-27b8-4295-a83b-4f04f322291f',
-        from_name: "Сайт Бани38",
-        subject: `Новая заявка: ${name} (${phone})`,
-        name: name,
-        phone: phone,
-        message: text
-    };
-
-    try {
-        const response = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(formData)
-        });
-
-        if (response.ok) {
-            showStep(6); // Показываем твой красивый зеленый экран успеха!
-        } else {
-            alert('Что-то пошло не так. Попробуйте позвонить нам напрямую.');
-            btn.innerText = originalText;
-            btn.disabled = false;
-        }
-    } catch (e) {
-        alert('Ошибка сети. Проверьте интернет.');
-        btn.innerText = originalText;
-        btn.disabled = false;
-    }
+    fetch(url).then(function(){ showStep(6); }).catch(function(e){ console.error('Ошибка:', e); showStep(6); });
 }
 
-// --- 4. МОДАЛЬНЫЕ ОКНА И ГАЛЕРЕЯ (Без изменений) ---
 function playVideo(url) {
     var wrapper = document.getElementById('video-wrapper');
     wrapper.innerHTML = '<video id="promo-vid" controls autoplay style="width:100%; max-height:80vh; border-radius:8px;"><source src="'+url+'" type="video/mp4"></video>';
@@ -219,6 +731,93 @@ function toggleFaq(el){var item=el.parentElement,open=item.classList.contains('o
 function openModal(id){document.getElementById('modal-'+id).classList.add('active');document.body.style.overflow='hidden'}
 function closeModal(id){document.getElementById('modal-'+id).classList.remove('active');if(id==='catalog')document.querySelector('.modal-media').innerHTML=''; document.body.style.overflow=''}
 function closeModalOnBg(e, id){ if(e.target.id === 'modal-'+id) { if(id==='video') closeVideoModal(); else closeModal(id); } }
+
+document.querySelectorAll('.js-scroll').forEach(function(anchor){
+    anchor.addEventListener('click', function(e){
+        e.preventDefault();
+        var target = document.querySelector(this.getAttribute('href'));
+        if(target) {
+            var offset = 60; 
+            var elementPosition = target.getBoundingClientRect().top;
+            var offsetPosition = elementPosition + window.pageYOffset - offset;
+            window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+        }
+    });
+});
+</script>
+<script>
+// Твой ключ Web3Forms
+const WEB3_ACCESS_KEY = 'b1e5ac10-27b8-4295-a83b-4f04f322291f';
+
+// Логика переключения шагов
+let currentStep = 0;
+const steps = document.querySelectorAll('.quiz-step');
+
+function nextStep(stepIndex) {
+    steps.forEach(step => step.classList.remove('active'));
+    if (steps[stepIndex]) {
+        steps[stepIndex].classList.add('active');
+        currentStep = stepIndex;
+    }
+}
+
+// Выбор варианта (карточки)
+document.querySelectorAll('.quiz-option').forEach(option => {
+    option.addEventListener('click', function() {
+        const parent = this.closest('.quiz-options');
+        parent.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+        this.classList.add('selected');
+        
+        // Автопереход через полсекунды к следующему шагу
+        setTimeout(() => {
+            const nextBtn = this.closest('.quiz-step').querySelector('.btn-next');
+            if (nextBtn) nextBtn.click();
+        }, 500);
+    });
+});
+
+// ФУНКЦИЯ ОТПРАВКИ
+async function finishQuiz() {
+    // Собираем результаты квиза
+    const selectedOptions = document.querySelectorAll('.quiz-option.selected');
+    let quizSummary = "Результаты квиза:\n";
+    
+    selectedOptions.forEach((opt, index) => {
+        const question = opt.closest('.quiz-step').querySelector('h3').innerText;
+        const answer = opt.querySelector('.quiz-option-text').innerText;
+        quizSummary += `${index + 1}. ${question}: ${answer}\n`;
+    });
+
+    // Собираем контакты
+    const name = document.querySelector('input[placeholder*="Имя"]').value;
+    const phone = document.querySelector('input[placeholder*="Телефон"]').value;
+
+    const formData = {
+        access_key: WEB3_ACCESS_KEY,
+        from_name: "Сайт Бани38",
+        subject: `Новая заявка от ${name}`,
+        name: name,
+        phone: phone,
+        message: quizSummary // Тут будут все ответы на вопросы квиза
+    };
+
+    try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+            alert('Спасибо! Заявка отправлена!');
+            location.reload();
+        } else {
+            alert('Что-то пошло не так. Попробуйте еще раз.');
+        }
+    } catch (e) {
+        alert('Ошибка сети. Проверьте интернет.');
+    }
+}
 </script>
 </body>
 </html>
