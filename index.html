@@ -89,8 +89,8 @@ p{margin-bottom:12px}
 .hero-bullets li span { color: var(--wood-l); }
 .hero-buttons{display:flex;gap:16px;flex-wrap:wrap; margin-bottom: 30px;}
 .hero-social { display: flex; align-items: center; gap: 16px; background: rgba(0,0,0,0.4); padding: 12px 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); display: inline-flex;}
-.hero-avatars { display: flex; margin-right: -10px; }
-.hero-avatars img { width: 36px; height: 36px; border-radius: 50%; border: 2px solid #222; margin-left: -12px; }
+.hero-icon { width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(135deg,#D4A55A,#B8863A); display: flex; align-items: center; justify-content: center; margin-right: 14px; flex-shrink: 0; box-shadow: 0 4px 14px rgba(184,134,58,.35); }
+.hero-icon svg { width: 32px; height: 32px; }
 .hero-social p { margin: 0; font-size: 0.95rem; color: rgba(255,255,255,0.9); line-height: 1.3; }
 
 /* --- 2. ПРОБЛЕМА (ИНЖЕНЕРИЯ) --- */
@@ -257,7 +257,7 @@ p{margin-bottom:12px}
 <p style="font-size: 1.1rem; color: rgba(255,255,255,.8); margin-bottom: 24px; line-height: 1.6;">Вы наверняка думаете, что все строители - это просто «сборщики коробок», которые накрутят цену в договоре, зашьют сырую сосну вагонкой и исчезнут. <strong>И чаще всего вы правы.</strong></p>
 <ul class="hero-bullets">
     <li><span>✔️</span> Гарантия 1 год</li>
-    <li><span>✔️</span> Срок от 5 до 12 дней</li>
+    <li><span>✔️</span> Срок от 5 дней</li>
     <li><span>✔️</span> Доставка по всей области</li>
 </ul>
 <div class="hero-buttons">
@@ -265,12 +265,14 @@ p{margin-bottom:12px}
 <a href="#quiz" class="btn btn-outline js-scroll" style="border-color:rgba(255,255,255,.3); color:#fff;">Получить индивидуальный расчет</a>
 </div>
 <div class="hero-social">
-    <div class="hero-avatars">
-        <img src="https://ui-avatars.com/api/?name=Алексей&background=D4A55A&color=fff&rounded=true" alt="client">
-        <img src="https://ui-avatars.com/api/?name=Елена&background=1E1E1E&color=fff&rounded=true" alt="client">
-        <img src="https://ui-avatars.com/api/?name=Михаил&background=8E6620&color=fff&rounded=true" alt="client">
+    <div class="hero-icon">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M11.5 6q1.2-1.2 0-2.6 M16 4.6q1.2-1.2 0-2.6 M20.5 6q1.2-1.2 0-2.6" stroke="#fff" stroke-width="1.9" stroke-linecap="round" fill="none"/>
+            <path d="M5 15.5 L16 7 L27 15.5 V27 H5 Z" fill="#fff"/>
+            <rect x="13" y="19.5" width="6" height="7.5" rx="0.5" fill="#8E6620"/>
+        </svg>
     </div>
-    <p>Уже поставили более <strong>120 бань</strong> в Иркутской области</p>
+    <p>Уже поставили более <strong>156 бань</strong> в Иркутской области</p>
 </div>
 </div>
 </div>
@@ -324,12 +326,21 @@ p{margin-bottom:12px}
 </div></div>
 
 <div class="catalog-card">
-<div class="catalog-card-visual" style="background-image: url('коллаж бани 2,2х4.png');" onclick="openCatalog('Компакт', '2.2х4 м', 'Классика с комнатой отдыха. Хит для дачи.', ['коллаж бани 2,2х4.png', 'баня 2 на 4.png', 'баня 2,2 на 4.png', 'баня 2,2х4.png', 'баня 2.2х4.png', '2,2х4 баня.jpg', '2,2x4 баня на участок.jpg', '2,2x4 комната отдыха 2.jpg', '2,2x4 комната отдыха.jpg',  '2,2x4 баня парилка.jpg', '2,2x4 морилка.jpg'], ['4-ка.mp4', '2,2х4.mp4'])"></div>
+<div class="catalog-card-visual" style="background-image: url('коллаж бани 2,2х4.png');" onclick="openCatalog('Компакт', '2.2х4 м', 'Классика с комнатой отдыха. Хит для дачи.', ['коллаж бани 2,2х4.png', 'баня 2 на 4.png', 'баня 2,2 на 4.png', 'баня 2,2х4.png', 'баня 2.2х4.png', '2,2х4 баня.jpg', '2,2x4 баня на участок.jpg', '2,2x4 комната отдыха 2.jpg', '2,2x4 комната отдыха.jpg',  '2,2x4 баня парилка.jpg', '2,2x4 морилка.jpg'], ['2,2х4.mp4'])"></div>
 <div class="catalog-card-body">
 <h3 class="catalog-card-title">Компакт</h3><div class="catalog-card-size">2.2 х 4 м</div>
 <p class="catalog-card-desc">Классика: парная + уютная комната отдыха. Абсолютный хит для семейной дачи.</p>
-<p class="catalog-card-price">от 315 000 ₽</p>
-<div class="catalog-card-footer"><button class="btn btn-outline btn-block" onclick="openCatalog('Компакт', '2.2х4 м', 'Классика с комнатой отдыха. Хит для дачи.', ['коллаж бани 2,2х4.png', 'баня 2 на 4.png', 'баня 2,2 на 4.png', 'баня 2,2х4.png', 'баня 2.2х4.png', '2,2х4 баня.jpg',  '2,2x4 баня на участок.jpg', '2,2x4 комната отдыха 2.jpg', '2,2x4 комната отдыха.jpg',  '2,2x4 баня парилка.jpg', '2,2x4 морилка.jpg'], ['4-ка.mp4', '2,2х4.mp4'])">Изучить модель</button></div>
+<p class="catalog-card-price">от 350 000 ₽</p>
+<div class="catalog-card-footer"><button class="btn btn-outline btn-block" onclick="openCatalog('Компакт', '2.2х4 м', 'Классика с комнатой отдыха. Хит для дачи.', ['коллаж бани 2,2х4.png', 'баня 2 на 4.png', 'баня 2,2 на 4.png', 'баня 2,2х4.png', 'баня 2.2х4.png', '2,2х4 баня.jpg',  '2,2x4 баня на участок.jpg', '2,2x4 комната отдыха 2.jpg', '2,2x4 комната отдыха.jpg',  '2,2x4 баня парилка.jpg', '2,2x4 морилка.jpg'], ['2,2х4.mp4'])">Изучить модель</button></div>
+</div></div>
+
+<div class="catalog-card">
+<div class="catalog-card-visual" style="background-image: url('баня 2,4х4 01.jpg');" onclick="openCatalog('Баня 2,4х4', '2.4х4 м', 'Увеличенная ширина: просторная парная и полноценная комната отдыха.', ['баня 2,4х4 01.jpg', 'баня 2,4х4 02.jpg', 'баня 2,4х4 03.jpg', 'баня 2,4х4 04.jpg'], [])"></div>
+<div class="catalog-card-body">
+<h3 class="catalog-card-title">Баня 2,4х4</h3><div class="catalog-card-size">2.4 х 4 м</div>
+<p class="catalog-card-desc">Увеличенная ширина: просторная парная и полноценная комната отдыха.</p>
+<p class="catalog-card-price">от 380 000 ₽</p>
+<div class="catalog-card-footer"><button class="btn btn-outline btn-block" onclick="openCatalog('Баня 2,4х4', '2.4х4 м', 'Увеличенная ширина: просторная парная и полноценная комната отдыха.', ['баня 2,4х4 01.jpg', 'баня 2,4х4 02.jpg', 'баня 2,4х4 03.jpg', 'баня 2,4х4 04.jpg'], [])">Изучить модель</button></div>
 </div></div>
 
 <div class="catalog-card">
@@ -369,12 +380,21 @@ p{margin-bottom:12px}
 </div></div>
 
 <div class="catalog-card">
-<div class="catalog-card-visual" onclick="openCatalog('Макси', '2.2х6 м', 'Три зоны: парная, мойка и теплая раздевалка.', [], [])"><span class="placeholder-img">Фото в обработке<br><small>Скоро добавим в каталог</small></span></div>
+<div class="catalog-card-visual" style="background-image: url('макси 2,5х6 01.jpg');" onclick="openCatalog('Макси (3 отделения)', '2.5х6 м', 'Три зоны: парная, мойка и теплая раздевалка.', ['макси 2,5х6 01.jpg', 'макси 2,5х6 02.jpg', 'макси 2,5х6 03.jpg', 'макси 2,5х6 04.jpg', 'макси 2,5х6 05.jpg', 'макси 2,5х6 06.jpg', 'макси 2,5х6 07.jpg', 'макси 2,5х6 08.jpg', 'макси 2,5х6 09.jpg', 'макси 2,5х6 10.jpg', 'макси 2,5х6 11.jpg'], [])"></div>
 <div class="catalog-card-body">
-<h3 class="catalog-card-title">Макси (3 отделения)</h3><div class="catalog-card-size">2.2 х 6 м</div>
+<h3 class="catalog-card-title">Макси (3 отделения)</h3><div class="catalog-card-size">2.5 х 6 м</div>
 <p class="catalog-card-desc">Три полноценные изолированные зоны: парная, душевая (мойка) и теплая комната отдыха.</p>
-<p class="catalog-card-price">620 000 ₽</p>
-<div class="catalog-card-footer"><button class="btn btn-outline btn-block" onclick="openCatalog('Макси', '2.2х6 м', 'Три зоны: парная, мойка и теплая раздевалка.', [], [])">Изучить модель</button></div>
+<p class="catalog-card-price">от 680 000 ₽</p>
+<div class="catalog-card-footer"><button class="btn btn-outline btn-block" onclick="openCatalog('Макси (3 отделения)', '2.5х6 м', 'Три зоны: парная, мойка и теплая раздевалка.', ['макси 2,5х6 01.jpg', 'макси 2,5х6 02.jpg', 'макси 2,5х6 03.jpg', 'макси 2,5х6 04.jpg', 'макси 2,5х6 05.jpg', 'макси 2,5х6 06.jpg', 'макси 2,5х6 07.jpg', 'макси 2,5х6 08.jpg', 'макси 2,5х6 09.jpg', 'макси 2,5х6 10.jpg', 'макси 2,5х6 11.jpg'], [])">Изучить модель</button></div>
+</div></div>
+
+<div class="catalog-card">
+<div class="catalog-card-visual" style="background-image: url('баня 3х7 01.png');" onclick="openCatalog('Баня 3х6', '3х6 м', 'Большая семейная баня: парная, помывочная с душем и просторная комната отдыха.', ['баня 3х7 01.png', 'баня 3х7 02.png', 'баня 3х7 03.png', 'баня 3х7 04.png', 'баня 3х7 05.png', 'баня 3х7 06.png', 'баня 3х7 07.png', 'баня 3х7 08.jpg'], ['3х7.mp4'])"></div>
+<div class="catalog-card-body">
+<h3 class="catalog-card-title">Баня 3х6</h3><div class="catalog-card-size">3 х 6 м</div>
+<p class="catalog-card-desc">Большая семейная баня: парная, помывочная с душем и просторная комната отдыха.</p>
+<p class="catalog-card-price">от 840 000 ₽</p>
+<div class="catalog-card-footer"><button class="btn btn-outline btn-block" onclick="openCatalog('Баня 3х6', '3х6 м', 'Большая семейная баня: парная, помывочная с душем и просторная комната отдыха.', ['баня 3х7 01.png', 'баня 3х7 02.png', 'баня 3х7 03.png', 'баня 3х7 04.png', 'баня 3х7 05.png', 'баня 3х7 06.png', 'баня 3х7 07.png', 'баня 3х7 08.jpg'], ['3х7.mp4'])">Изучить модель</button></div>
 </div></div>
 
 <div class="catalog-card">
